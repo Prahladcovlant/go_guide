@@ -1,4 +1,4 @@
-## GoLang CLI Ticket Booking App – Practice Project
+# GoLang CLI Ticket Booking App – Practice Project
 
 This document outlines a CLI-based ticket booking application to practice core concepts in Go.
 
