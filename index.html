@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOLANG_Guide</title>
+    <link rel="icon" type="image/png" href="/covlant_icon.png" sizes="32x32" />
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 4rem;
+        }
+        .sidebar {
+            height: calc(100vh - 4rem);
+            position: sticky;
+            top: 4rem;
+            transition: all 0.3s ease;
+        }
+        .content {
+            max-width: 800px;
+            width: 100%;
+        }
+        pre {
+            background: #181818 !important;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            padding: 1rem !important;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+        }
+        .prose pre {
+            background: #2a2a2a !important;
+            color: #fff;
+            padding: 1rem !important;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+        .prose code {
+            background: #676666;
+            color: #faf8f8;
+            font-weight: bold;
+            padding: 0.2em 0.4em;
+            border-radius: 0.3em;
+        }
+        .prose pre code {
+            background: none;
+            padding: 0;
+        }
+        .prose h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #5a55f5;
+            margin-top: 2em;
+            margin-bottom: 1em;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5em;
+        }
+        .prose h2 {
+            font-size: 1.875rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-top: 1.5em;
+            margin-bottom: 0.75em;
+        }
+        .prose h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-top: 1.25em;
+            margin-bottom: 0.5em;
+        }
+        .prose h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+        .prose ul {
+            list-style-type: disc;
+            padding-left: 1.5em;
+            margin: 1em 0;
+        }
+        .prose li {
+            margin: 0.5em 0;
+        }
+        .prose p {
+            margin: 1em 0;
+            line-height: 1.6;
+        }
+        .section {
+            scroll-margin-top: 2rem;
+        }
+        .mobile-menu-button {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: block;
+            }
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                width: 100%;
+                background: white;
+                z-index: 40;
+                padding: 1rem;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .content {
+                padding: 1rem;
+            }
+            .prose h1 {
+                font-size: 1.875rem;
+            }
+            .prose h2 {
+                font-size: 1.5rem;
+            }
+            .prose h3 {
+                font-size: 1.25rem;
+            }
+            .prose h4 {
+                font-size: 1.125rem;
+            }
+            pre {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <h1 class="text-xl font-bold text-gray-800">GO language guide</h1>
+                </div>
+                <button class="mobile-menu-button p-2 rounded-md text-gray-600 hover:text-gray-900 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex flex-col md:flex-row pt-8">
+        <!-- Sidebar -->
+        <div class="sidebar w-full md:w-64 bg-white shadow-lg">
+            <div class="p-4">
+                <h2 class="text-lg font-semibold mb-4">Contents</h2>
+                <ul class="space-y-2">
+                    <li><a href="#Basic_intro" class="text-blue-600 hover:text-blue-800">0.Basic_intro to GO</a></li>
+                    <li><a href="#section1" class="text-blue-600 hover:text-blue-800">1.Variables_loops_functions</a></li>
+                    <li><a href="#errorr" class="text-blue-600 hover:text-blue-800">2.Error_handling</a></li>
+                    <li><a href="#defer" class="text-blue-600 hover:text-blue-800">3.Defer, Panic, Recover</a></li>
+                    <!-- <li><a href="#module-mocking" class="text-blue-600 hover:text-blue-800">5. Module Mocking</a></li> -->
+                    <!-- <li><a href="#spying" class="text-blue-600 hover:text-blue-800">6. Spying</a></li> -->
+                    <!-- <li><a href="#snapshots" class="text-blue-600 hover:text-blue-800">7. Snapshot Testing</a></li> -->
+                    <!-- <li><a href="#async" class="text-blue-600 hover:text-blue-800">8. Asynchronous Testing</a></li> -->
+                    <!-- <li><a href="#setup" class="text-blue-600 hover:text-blue-800">9. setup for testing</a></li>  -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 pb-8">
+            <div class="content mx-auto px-4">
+                <div id="Basic_intro" class="mb-12 section">
+                    <div class="prose max-w-none">
+                        <!-- Content will be loaded here -->
+                    </div>
+                </div>
+
+                <div id="section1" class="mb-12 section">
+                    <div class="prose max-w-none">
+                        <!-- Content will be loaded here -->
+                    </div>
+                </div>
+                <div id="errorr" class="mb-12 section">
+                    <div class="prose max-w-none">
+                        <!-- Content will be loaded here -->
+                    </div>
+                </div>
+                <div id="defer" class="mb-12 section">
+                    <div class="prose max-w-none">
+                        <!-- Content will be loaded here -->
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
+    <script>
+        // Configure marked options
+        marked.setOptions({
+            highlight: function(code, lang) {
+                if (Prism.languages[lang]) {
+                    return Prism.highlight(code, Prism.languages[lang], lang);
+                }
+                return code;
+            },
+            langPrefix: 'language-',
+            breaks: true,
+            gfm: true
+        });
+
+        // Function to load markdown content
+        async function loadContent() {
+            const sections = [
+                { id: 'Basic_intro', file: 'Basic_intro' },
+                { id: 'section1', file: 'section1' },
+                 { id: 'errorr', file: 'error_handling' },
+                { id: 'defer', file: 'defer' }
+                // { id: 'module-mocking', file: '5_module_mocking' },
+                // { id: 'spying', file: '6_spying' },
+                // { id: 'snapshots', file: '7_snapshot_testing' },
+                // { id: 'async', file: '8_asynchronous_testing' },
+                // { id: 'setup', file: '9_setup_for_typescript_testing' }
+            ];
+
+            for (const section of sections) {
+                try {
+                    const response = await fetch(`Go_guide/${section.file}.md`);
+                    const text = await response.text();
+                    const html = marked.parse(text);
+                    document.querySelector(`#${section.id} .prose`).innerHTML = html;
+                    
+                    // Highlight code blocks after content is loaded
+                    Prism.highlightAll();
+                } catch (error) {
+                    console.error(`Error loading ${section.file}:`, error);
+                }
+            }
+        }
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const sidebar = document.querySelector('.sidebar');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(e.target) && 
+                !mobileMenuButton.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Load content when page loads
+        document.addEventListener('DOMContentLoaded', loadContent);
+    </script>
+</body>
+</html> 
